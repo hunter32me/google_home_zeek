@@ -1,0 +1,1 @@
+@load ./google_home_zeek.bro
