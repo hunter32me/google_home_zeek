@@ -1,7 +1,7 @@
 module dns_TXT_reply;
 
 export {
-    redef enym Log::ID += { LOG };
+    redef enum Log::ID += { LOG };
     type Info: record {
         ts:     time    &long;
         answer: string  &log;
