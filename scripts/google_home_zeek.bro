@@ -10,7 +10,7 @@ export {
 
 event bro_init()
 {
-    Log::create_stream(google_home_zeek::LOG, [$columns=Info, $path="google_home_zeek"]);
+    Log::create_stream(dns_TXT_reply::LOG, [$columns=Info, $path="dns_TXT_reply"]);
 }
 
 event dns_TXT_reply (c: connection, msg: dns_msg, ans: dns_answer, strs: string_vec)
