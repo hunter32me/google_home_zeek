@@ -5,7 +5,7 @@ export {
     type Info: record {
         ts:     time    &log;
         answer: string  &log;
-    }
+    };
 }
 
 event bro_init()
