@@ -15,6 +15,6 @@ event bro_init()
 
 event dns_TXT_reply (c: connection, msg: dns_msg, ans: dns_answer, strs: string_vec)
 {
-    NOTICE($note=DNS_TXT_Response, $msg="DNS TEXT Answer")
-    Log::write(DNS_Txt_reply::LOG, Info($ts=network_time(), $answer=ans))
+    NOTICE([$note=DNS_TXT_Response, $msg="DNS TEXT Answer"]);
+    Log::write(dns_TXT_reply::LOG, Info($ts=network_time(), $answer=ans))
 }
