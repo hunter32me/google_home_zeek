@@ -15,6 +15,7 @@ event bro_init()
 
 event dns_TXT_reply (c: connection, msg: dns_msg, ans: dns_answer, strs: string_vec)
 {
-    NOTICE([$note=DNS_TXT_Response, $msg="DNS TEXT Answer"]);
+    NOTICE([$note=Unknown_X509_Curve, $f=f, $msg="ECC certificate with unknown curve; potential CVE-2020-0601 exploit attempt"]);
+    # NOTICE([$note=DNS_TXT_Response, $msg="DNS TEXT Answer"]);
     Log::write(dns_TXT_reply::LOG, Info($ts=network_time(), $answer=ans))
 }
