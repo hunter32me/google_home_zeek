@@ -20,5 +20,5 @@ event bro_init()
 event dns_TXT_reply (c: connection, msg: dns_msg, ans: dns_answer, strs: string_vec)
 {
     ## NOTICE([$note=Unknown_X509_Curve, $msg="ECC certificate with unknown curve; potential CVE-2020-0601 exploit attempt"]);
-        NOTICE([$note=DNS_TXT_Response, $msg=fmt("Hey hi DNS TXT msg = %s", msg)]);
+        NOTICE([$note=DNS_TXT_Response, $msg=fmt("Hey hi DNS TXT msg = %s", ans)]);
 }
