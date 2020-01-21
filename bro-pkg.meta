@@ -1,0 +1,4 @@
+[package]
+description="Test script for Zeek Scripting DNS TXT messages. Please read Readme."
+script_dir = scripts
+test_command = cd testing && btest -d
