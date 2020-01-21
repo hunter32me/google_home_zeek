@@ -10,7 +10,7 @@ export {
 
 event bro_init()
 {
-    Log::create_stream(DNS_TXT_reply::LOG, [$colums=Info, $path="dns_TXT_reply"])
+    Log::create_stream(dns_TXT_reply::LOG, [$colums=Info, $path="dns_TXT_reply"])
 }
 
 event dns_TXT_reply (c: connection, msg: dns_msg, ans: dns_answer, strs: string_vec)
