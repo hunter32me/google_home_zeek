@@ -1,10 +1,11 @@
 module DNS;
-module TCP;
+module NTP;
 
 export {
     redef enum Notice::Type += {
         DNS::LARGE_QUERY,
-        DNS::LARGE_REPLY
+        DNS::LARGE_REPLY,
+        NTP::MONLIST
     };
 
     const dns_query_max = 75;
@@ -31,4 +32,9 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Response: %s", dns_msg)]);
     }
+}
+
+event ntp_message(c: connection, is_orig: bool, msg: NTP::Message)
+{
+    NOTICE([$note=NTP::MONLIST, $msg=msg]);
 }
