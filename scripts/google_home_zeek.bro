@@ -9,7 +9,7 @@ export {
         DNS_TXT_Response
     };
 
-    const = dns_query_max = 200l
+    const = dns_query_max = 200;
 
 }
 
