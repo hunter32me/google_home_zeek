@@ -30,11 +30,11 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 {
     if (len > dns_reply_max)
     {
-        NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Response: %s", dns_msg)]);
+        NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Response: %s", msg)]);
     }
 }
 
 event ntp_message(c: connection, msg: ntp_msg, excess: string)
 {
-    NOTICE([$note=NTP::MONLIST, $msg=fmt("NTP: %s", ntp_msg)]);
+    NOTICE([$note=NTP::MONLIST, $msg=fmt("NTP: %s", msg)]);
 }
