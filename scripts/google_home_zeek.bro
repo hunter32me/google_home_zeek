@@ -12,6 +12,7 @@ export {
     const dns_reply_max = 150;
     const dns_whitelist = /sophosxl.net|local/ ;
     const muticast_crap = 224.0.0.0/8;
+    conf muticast_crap_ipv6 = ffx2::/16
 
 }
 
@@ -29,7 +30,7 @@ event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qcla
 
 event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 {
-    if (len > dns_reply_max && (c$id$resp_h !in muticast_crap || c$id$resp_h !in "fe80::ea:b4ef:8842:65e8"))
+    if (len > dns_reply_max && (c$id$resp_h !in muticast_crap || c$id$resp_h !in muticast_crap_ipv6 ))
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("DNS Response LEN: %s, DNS Response: %s", len, msg)]);
     }
