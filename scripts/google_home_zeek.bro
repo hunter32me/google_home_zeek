@@ -29,7 +29,7 @@ event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qcla
 
 event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 {
-    if (len > dns_reply_max && c$id$resp_h !in msgString)
+    if (len > dns_reply_max && c$id$resp_h !in muticast_crap)
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("DNS Response LEN: %s, DNS Response: %s", len, msg)]);
     }
