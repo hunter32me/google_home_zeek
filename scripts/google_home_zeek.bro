@@ -17,6 +17,6 @@ event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qcla
 {
     if (|query| > dns_query_max)
     {
-        NOTICE([$note=DNS::LARGE_QUERY, $conn=c, $msg=fmt("Query: %s, Query_type: %s", query, qtype)]);
+        NOTICE([$note=DNS::LARGE_QUERY, $conn=c, $msg=fmt("Query: %s", query)]);
     }
 }
