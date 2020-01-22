@@ -6,7 +6,7 @@ export {
         answer: string  &log;
     };
     redef enum Notice::Type += {
-        DNS_TXT_Response
+        DNS::LARGE_QUERY
     };
 
     const dns_query_max = 200;
