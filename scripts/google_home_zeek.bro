@@ -1,4 +1,5 @@
 module DNS;
+module TCP;
 
 export {
     redef enum Notice::Type += {
