@@ -36,5 +36,5 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 
 event ntp_message(c: connection, msg: ntp_msg, excess: string)
 {
-    NOTICE([$note=NTP::MONLIST, $msg=msg]);
+    NOTICE([$note=NTP::MONLIST, $msg=fmt("NTP: %s", ntp_msg)]);
 }
