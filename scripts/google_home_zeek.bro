@@ -1,10 +1,6 @@
 module DNS;
 
 export {
-    type Info: record {
-        ts:     time    &log;
-        answer: string  &log;
-    };
     redef enum Notice::Type += {
         DNS::LARGE_QUERY
     };
