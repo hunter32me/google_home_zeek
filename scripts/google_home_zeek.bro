@@ -12,7 +12,7 @@ export {
     const dns_reply_max = 150;
     const dns_whitelist = /sophosxl.net|local/ ;
     const muticast_crap = 224.0.0.0/8;
-    const muticast_crap_ipv6 = ffx2::/16
+    const muticast_crap_ipv6 = ffx2::fb/16;
 
 }
 
