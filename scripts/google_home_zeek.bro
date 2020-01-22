@@ -10,7 +10,8 @@ export {
 
     const dns_query_max = 75;
     const dns_reply_max = 150;
-    const dns_whitelist = /sophosxl.net/;
+    const dns_whitelist = /sophosxl.net|local|/;
+    const muticast_crap = /224.0.0/;
 
 }
 
@@ -28,7 +29,7 @@ event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qcla
 
 event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 {
-    if (len > dns_reply_max)
+    if (len > dns_reply_max && muticast_crap !in msg)
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("DNS Response LEN: %s, DNS Response: %s", len, msg)]);
     }
