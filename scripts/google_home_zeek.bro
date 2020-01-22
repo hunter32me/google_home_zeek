@@ -15,7 +15,6 @@ export {
 
 event bro_init()
 {
-    Log::create_stream(dns_request::LOG, [$columns=Info, $path="dns_TXT_reply"]);
 }
 
 eevent dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count)
