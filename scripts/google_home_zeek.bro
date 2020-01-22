@@ -9,7 +9,7 @@ export {
     };
 
     const dns_query_max = 75;
-    const dns_reply_max = 100;
+    const dns_reply_max = 150;
     const dns_whitelist = /sophosxl.net/;
 
 }
@@ -30,7 +30,7 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 {
     if (len > dns_reply_max)
     {
-        NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Response: %s", msg)]);
+        NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("DNS Response: %s", msg)]);
     }
 }
 
