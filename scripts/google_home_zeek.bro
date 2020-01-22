@@ -1,7 +1,6 @@
 module DNS;
 
 export {
-    redef enum Log::ID += { LOG };
     type Info: record {
         ts:     time    &log;
         answer: string  &log;
