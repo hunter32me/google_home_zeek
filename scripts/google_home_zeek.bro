@@ -24,7 +24,7 @@ event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qcla
 {
     if (|query| > dns_query_max && dns_whitelist !in query)
     {
-        NOTICE([$note=DNS::LARGE_QUERY, $conn=c, $msg=fmt("Query: %s", query)]);
+        NOTICE([$note=DNS::LARGE_QUERY, $conn=c, $msg=fmt("Holy DNS Query Batman : %s", query)]);
     }
 }
 
@@ -32,11 +32,11 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 {
     if (len > dns_reply_max && (c$id$resp_h !in muticast_crap || c$id$resp_h !in muticast_crap_ipv6 ))
     {
-        NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("DNS Response LEN: %s, DNS Response: %s", len, msg)]);
+        NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Holy DNS Response Batman LEN: %s, DNS Response: %s", len, msg)]);
     }
 }
 
 event ntp_message(c: connection, msg: ntp_msg, excess: string)
 {
-    NOTICE([$note=NTP::MONLIST, $msg=fmt("NTP: %s", msg)]);
+    NOTICE([$note=NTP::MONLIST, $msg=fmt("Holy NTP Batman: %s", msg)]);
 }
