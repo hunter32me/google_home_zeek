@@ -1,3 +1,4 @@
+##The DarkKnight watches your network even in the darkest of night and brigest of Days. 
 module DNS;
 module NTP;
 
@@ -30,7 +31,7 @@ event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qcla
 
 event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 {
-    if (len > dns_reply_max && (c$id$resp_h !in muticast_crap || c$id$resp_h !in muticast_crap_ipv6 ))
+    if (len > dns_reply_max && c$id$resp_h !in muticast_crap && c$id$resp_h !in muticast_crap_ipv6 )
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Holy DNS Response Batman LEN: %s, DNS Response: %s", len, msg)]);
     }
