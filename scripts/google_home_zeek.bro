@@ -17,7 +17,7 @@ event bro_init()
 {
 }
 
-eevent dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count)
+event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count)
 {
     if (|query| > dns_query_max)
     {
