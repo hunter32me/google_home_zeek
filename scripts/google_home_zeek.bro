@@ -1,4 +1,4 @@
-module dns_TXT_reply;
+module DNS;
 
 export {
     redef enum Log::ID += { LOG };
