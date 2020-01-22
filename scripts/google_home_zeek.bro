@@ -2,7 +2,7 @@ module DNS;
 
 export {
     redef enum Notice::Type += {
-        DNS::LARGE_QUERY
+        DNS::LARGE_QUERY,
         DNS::LARGE_REPLY
     };
 
