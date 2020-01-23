@@ -58,7 +58,7 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
     }
     if (|rcode| == 3)
     {
-        SumStats::observe("Detect.dnsTunneling",
+        SumStats::observe("Detect.DGA",
 						[$host=c$id$orig_h, 
 						$str=cat(c$id$orig_p,",",
 							c$id$resp_h,",",
