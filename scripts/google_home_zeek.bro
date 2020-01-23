@@ -57,7 +57,7 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Holy DNS Response Batman LEN: %s, DNS Response: %s", len, msg)]);
     }
-    if (rcode3 in msg)
+    if (rcode3 in msg$rcode)
     {
         SumStats::observe("Detect.DGA",
 						[$host=c$id$orig_h, 
