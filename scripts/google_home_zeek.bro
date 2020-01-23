@@ -64,8 +64,8 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
 						$str=cat(c$id$orig_p,",",
 							c$id$resp_h,",",
 							c$id$resp_p,",",
-							cat("Query: ",query),",",
-							cat("Query type: ",qtype),",",
+							cat("Query: ",msg),",",
+							cat("Query type: ",msg),",",
 							c$uid)],
 						[$num=1]);
     }
