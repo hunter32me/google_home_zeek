@@ -19,7 +19,7 @@ export {
 
 event bro_init()
 {
-    local r1 = SumStats::Reducer($stream="Detect.DGA", $spply=set(SumStats::SUM));
+    local r1 = SumStats::Reducer($stream="Detect.DGA", $apply=set(SumStats::SUM));
     SumStats::create([name="Detect.DGA",
     $epoch=5min,
     $reducers=set(r1),
