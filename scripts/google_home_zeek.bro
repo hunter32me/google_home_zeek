@@ -23,7 +23,7 @@ event bro_init()
     $epoch=5min,
     $reducers=set(r1),
     $threshold=5.0,
-    $threshold_val(key: SumStats::key, result: SumStats::Result) =
+    $threshold_val(key: SumStats::Key, result: SumStats::Result) =
     {
         return result["Detect.DGA"]$sum;
     },
