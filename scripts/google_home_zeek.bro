@@ -6,7 +6,7 @@ export {
     redef enum Notice::Type += {
         DNS::LARGE_QUERY,
         DNS::LARGE_REPLY,
-        NTP::MONLIST
+        DNS::DGA
     };
 
     const dns_query_max = 75;
@@ -19,6 +19,27 @@ export {
 
 event bro_init()
 {
+    local r1 = SumStats::Reducer($stream="Detect.DGA", $spply=set(SumStats::SUM));
+    SumStats::create([name="Detect.DGA",
+    $epoch=5min,
+    $reducers=set(r1),
+    $threshold=5.0,
+    $threshold_val(key: SumStats::key, result: SmStats::Result) =
+    {
+        return result["Detect.DGA"]$sum;
+    },
+    $threshold_crossed(key: SumStats::Key, result: SumStats::Result) =
+    {
+        local parts = split_string(key$str, /,/);
+        NOTICE([$note=DNS::DGA,
+        $resp_h=to_addr(parts[1]),$resp_p=to_port(parts[2])],
+					$uid=parts[5],
+					$msg=fmt("%s", parts[3]),
+					$sub=fmt("%s", parts[4]),
+					$identifier=cat(key$host,parts[2]),
+					$suppress_for=5min
+					]);
+					}]);
 }
 
 event dns_request(c: connection, msg: dns_msg, query: string, qtype: count, qclass: count)
@@ -37,7 +58,3 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
     }
 }
 
-event ntp_message(c: connection, msg: ntp_msg, excess: string)
-{
-    NOTICE([$note=NTP::MONLIST, $msg=fmt("Holy NTP Batman: %s", msg)]);
-}
