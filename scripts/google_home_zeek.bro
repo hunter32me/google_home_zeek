@@ -31,7 +31,8 @@ event bro_init()
     {
         local parts = split_string(key$str, /,/);
         NOTICE([$note=DNS::DGA,
-        $resp_h=to_addr(parts[1]),$resp_p=to_port(parts[2]),
+            $id=[$orig_h=key$host,$orig_p=to_port(parts[0])
+                 $resp_h=to_addr(parts[1]),$resp_p=to_port(parts[2]),
 					$uid=parts[5],
 					$msg=fmt("%s", parts[3]),
 					$sub=fmt("%s", parts[4]),
