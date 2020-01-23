@@ -56,5 +56,17 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Holy DNS Response Batman LEN: %s, DNS Response: %s", len, msg)]);
     }
+    if (|rcode| == 3)
+    {
+        SumStats::observe("Detect.dnsTunneling",
+						[$host=c$id$orig_h, 
+						$str=cat(c$id$orig_p,",",
+							c$id$resp_h,",",
+							c$id$resp_p,",",
+							cat("Query: ",query),",",
+							cat("Query type: ",qtype),",",
+							c$uid)],
+						[$num=1]);
+    }
 }
 
