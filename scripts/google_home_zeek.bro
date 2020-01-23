@@ -13,6 +13,7 @@ export {
     const dns_whitelist = /sophosxl.net|local/ ;
     const muticast_crap = 224.0.0.0/8;
     const muticast_crap_ipv6 = [ff02::]/16;
+    const rcode3 = /rcode=3/;
 
 }
 
@@ -56,7 +57,7 @@ event dns_message(c: connection, is_orig: bool, msg: dns_msg, len: count)
     {
         NOTICE([$note=DNS::LARGE_REPLY, $conn=c, $msg=fmt("Holy DNS Response Batman LEN: %s, DNS Response: %s", len, msg)]);
     }
-    if (|rcode| == 3)
+    if (rcode3 in msg)
     {
         SumStats::observe("Detect.DGA",
 						[$host=c$id$orig_h, 
