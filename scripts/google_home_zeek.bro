@@ -1,6 +1,5 @@
 ##The DarkKnight watches your network even in the darkest of night and brigest of Days. 
 module DNS;
-module NTP;
 
 export {
     redef enum Notice::Type += {
@@ -20,7 +19,7 @@ export {
 event bro_init()
 {
     local r1 = SumStats::Reducer($stream="Detect.DGA", $apply=set(SumStats::SUM));
-    SumStats::create([name="Detect.DGA",
+    SumStats::create([$name="Detect.DGA",
     $epoch=5min,
     $reducers=set(r1),
     $threshold=5.0,
